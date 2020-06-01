@@ -5,7 +5,7 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native
 
 export default function Main(props) {
   const [productInfo, setProductInfo] = useState({});
-  const [producDocs, setProductDocs] = useState([]);
+  const [productDocs, setProductDocs] = useState([]);
   const [page, setPage] = useState(1);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Main(props) {
       setPage(page);
       setRefreshing(false);
     } else {
-      setProductDocs([...producDocs, ...docs]);
+      setProductDocs([...productDocs, ...docs]);
       setProductInfo(productInfo);
       setPage(page);
     }
@@ -65,11 +65,11 @@ export default function Main(props) {
     <View style={styles.container}>
       <FlatList
         contentContainerStyle={styles.list}
-        data={producDocs}
+        data={productDocs}
         keyExtractor={item => item._id}
         renderItem={renderItem}
         onEndReached={loadMore}
-        onEndReachedThreshold={0.2}
+        onEndReachedThreshold={0.1}
         refreshing={refreshing}
         onRefresh={handleRefresh}
       />
