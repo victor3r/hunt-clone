@@ -82,10 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fafafa'
   },
-  containerButton: {
-    padding: 20,
-    backgroundColor: '#fafafa'
-  },
   list: {
     padding: 20
   },
