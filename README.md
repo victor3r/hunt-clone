@@ -266,8 +266,6 @@ app.get("/", (req, res) => {
 });
 ```
 
-> Observar no Robo3T se foi criada.
-
 ## Reestruturação de arquivos
 
 Vamos separar as rotas em outro arquivo e separar a lógica em um outro arquivo também.
@@ -607,8 +605,6 @@ module.exports = {
 ---
 
 ## Front-end
-
-![Preview](./screenshots/huntweb.png)
 
 ### React.JS
 
@@ -1110,7 +1106,7 @@ E ele vai executar (e dessa vez uns 10 segundos ou 20 para executar 😁)
 
 **node_modules**: Todas as dependências instaladas.
 
-### Ficheiros
+### Arquivos
 
 **.babelrc**: Config do Babel
 **.buckconfig**: Config do Buck
