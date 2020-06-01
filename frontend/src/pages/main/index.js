@@ -43,7 +43,6 @@ export default function Main() {
 
   return (
     <div className="container">
-      <Link id="router" to={'/create'}>Criar</Link>
       <div className="product-list">
         {products.map(product => (
           <article key={product._id} >
