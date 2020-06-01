@@ -14,7 +14,7 @@ Product hunt clone
   - Docker
   - Insomnia
 - **React.JS**
-- **React NATIVE**
+- **React Native**
 
 ### Dependências Node.JS
 
