@@ -166,7 +166,7 @@ Para ver se a Database está mesmo funcionando, ver os schemas e muito mais, pod
 
 ---
 
-## Connectando a database
+## Connectando o banco de dados
 
 Uma **ORM** encapsula a lógica das operações do banco de dados através do código, ou seja, ao invés de usarmos querys ou a linguagem do banco de dados, vamos sempre usar apenas código JavaScript (para fazer deletes, inserts, updates, e muito mais.)
 
