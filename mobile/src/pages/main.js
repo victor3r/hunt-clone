@@ -1,111 +1,94 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 // import api from '../services/api';
 
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default class Main extends Component {
-  static navigationOptions = {
-    title: 'JSHunt',
-    headerStyle: {
-      backgroundColor: '#DA552F'
-    },
-    headerTintColor: '#FFF',
-    headerTitleStyle: {
-      flex: 1,
-      textAlign: 'center'
-    }
-  };
+export default function Main(props) {
+  const [productInfo, setProductInfo] = useState({});
+  const [docs, setDocs] = useState([]);
+  const [page, setPage] = useState(1);
+  const [refreshing, setRefreshing] = useState(false);
 
-  state = {
-    productInfo: {},
-    docs: [],
-    page: 1,
-    refreshing: false
-  }
+  useEffect(() => {
+    loadProducts();
+  }, []);
 
-  componentDidMount() {
-    this.loadProducts();
-  }
-
-  loadProducts = async (page = 1) => {
+  async function loadProducts(page = 1) {
     const response = await api.get(`/products?page=${page}`);
 
     const { docs, ...productInfo } = response.data;
 
-    if (this.state.refreshing) {
-      this.setState({
-        docs: [...docs],
-        productInfo,
-        page,
-        refreshing: false
-      });
+    if (refreshing) {
+      setDocs([...docs]);
+      setProductInfo(productInfo);
+      setPage(page);
+      setRefreshing(false);
     } else {
-      this.setState({
-        docs: [...this.state.docs, ...docs],
-        productInfo,
-        page
-      });
+      setDocs([...docs, ...docs]);
+      setProductInfo(productInfo);
+      setPage(page);
     }
   }
 
-  loadMore = () => {
-    const { page, productInfo } = this.state;
-
+  function loadMore() {
     if (page === productInfo.pages) return;
 
     const pageNumber = page + 1;
 
-    this.loadProducts(pageNumber);
+    loadProducts(pageNumber);
   }
 
-  handleRefresh = () => {
-    this.setState({ refreshing: true }, () => this.loadProducts());
+  function handleRefresh() {
+    setRefreshing(true);
+    loadProducts();
   }
 
-  handleCreate = () => this.props.navigation.navigate('Create');
+  function handleCreate() {
+    props.navigation.navigate('Create')
+  };
 
-  renderItem = ({ item }) => (
-    <View style={styles.productContainer}>
-      <Text style={styles.productTitle}>{item.title}</Text>
-      <Text style={styles.productDescription}>{item.description}</Text>
-
-      <TouchableOpacity
-        style={styles.productButton}
-        onPress={() => {
-          this.props.navigation.navigate('Product', { product: item });
-        }}
-      >
-        <Text style={styles.productButtonText}>Detalhes</Text>
-      </TouchableOpacity>
-    </View>
-  );
-
-  render() {
+  function renderItem({ item }) {
     return (
-      <View style={styles.container}>
-        <View style={styles.containerButton}>
-          <TouchableOpacity
-            style={styles.productButton}
-            onPress={this.handleCreate}
-          >
-            <Text style={styles.productButtonText}>
-              Criar
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <FlatList
-          contentContainerStyle={styles.list}
-          data={this.state.docs}
-          keyExtractor={item => item._id}
-          renderItem={this.renderItem}
-          onEndReached={this.loadMore}
-          onEndReachedThreshold={0.2}
-          refreshing={this.state.refreshing}
-          onRefresh={this.handleRefresh}
-        />
+      <View style={styles.productContainer}>
+        <Text style={styles.productTitle}>{item.title}</Text>
+        <Text style={styles.productDescription}>{item.description}</Text>
+
+        <TouchableOpacity
+          style={styles.productButton}
+          onPress={() => {
+            props.navigation.navigate('Product', { product: item });
+          }}
+        >
+          <Text style={styles.productButtonText}>Detalhes</Text>
+        </TouchableOpacity>
       </View>
     );
   }
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.containerButton}>
+        <TouchableOpacity
+          style={styles.productButton}
+          onPress={handleCreate}
+        >
+          <Text style={styles.productButtonText}>
+            Criar
+            </Text>
+        </TouchableOpacity>
+      </View>
+      <FlatList
+        contentContainerStyle={styles.list}
+        data={docs}
+        keyExtractor={item => item._id}
+        renderItem={renderItem}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.2}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
