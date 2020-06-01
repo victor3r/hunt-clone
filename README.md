@@ -12,7 +12,6 @@ Product hunt clone
 
 - **Node.JS**
   - Docker
-  - Robo3T
   - Insomnia
 - **React.JS**
 - **React NATIVE**
