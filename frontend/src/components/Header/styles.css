@@ -1,0 +1,19 @@
+div#main-div {
+  width: 100%;
+  height: 60px;
+  background: #da552f;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div#main-div #main-header {
+  margin-right: 47.5%;
+}
+
+div#main-div #home {
+  margin-left: 1%;
+}
