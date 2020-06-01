@@ -1164,8 +1164,6 @@ Para estilizar no React Native não usamos class ou id, importamos a função St
 
 E para estilizar não usamos o ínfen (-) do css, em vez disso usamos camel case. Por exemplo, **font-size: 13px;** vai ficar **fontSize: 13,**
 
-O **render() {}** é a parte visual que ele vai retornar.
-
 ### Configurando a navegação
 
 Como a nossa aplicação vai ter mais de uma rota vamos utilizar uma dependência chamada react-navigation.
