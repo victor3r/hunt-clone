@@ -6,7 +6,7 @@ import './styles.css';
 
 export default function Main() {
   const [products, setProducts] = useState([]);
-  const [producInfo, setProductInfo] = useState({});
+  const [productInfo, setProductInfo] = useState({});
   const [page, setPage] = useState(1);
 
 
@@ -15,17 +15,17 @@ export default function Main() {
   }, []);
 
 
-  loadProducts = async (page = 1) => {
+  async function loadProducts(page = 1) {
     const response = await api.get(`/products?page=${page}`);
 
     const { docs, ...productInfo } = response.data;
 
     setProducts(docs);
-    setProductInfo(producInfo);
+    setProductInfo(productInfo);
     setPage(page);
   }
 
-  prevPage = () => {
+  function prevPage() {
     if (page === 1) return;
 
     const pageNumber = page - 1;
@@ -33,7 +33,7 @@ export default function Main() {
     loadProducts(pageNumber);
   }
 
-  nextPage = () => {
+  function nextPage() {
     if (page === productInfo.pages) return;
 
     const pageNumber = page + 1;
