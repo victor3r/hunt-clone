@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import api from '../services/api';
+import api from '../services/api';
 
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 
@@ -43,10 +43,6 @@ export default function Main(props) {
     loadProducts();
   }
 
-  function handleCreate() {
-    props.navigation.navigate('Create')
-  };
-
   function renderItem({ item }) {
     return (
       <View style={styles.productContainer}>
@@ -67,16 +63,6 @@ export default function Main(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerButton}>
-        <TouchableOpacity
-          style={styles.productButton}
-          onPress={handleCreate}
-        >
-          <Text style={styles.productButtonText}>
-            Criar
-            </Text>
-        </TouchableOpacity>
-      </View>
       <FlatList
         contentContainerStyle={styles.list}
         data={docs}
