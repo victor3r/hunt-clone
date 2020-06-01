@@ -1188,10 +1188,6 @@ yarn add react-navigation
 - **Button**
 - **Touchables**
 
-No React Native nós temos uma monte de componentes built-in para criar UI.
-
-Para que o nosso conteúdo não fique preso cimo do celular (que pode se juntar com notch no iPhone ou a barra de notificações) usamos o componente **safeAreaView**.
-
 **View**: é componente que pode servir com um container component (div)
 **Text**: usado para disparar texto na tela.
 **Image**: serve fazer chamada de imagens, tal como no html nós temos o <img />. Para fazer chamadas de imagens da internet devemos usar assim **source={{width: largura, height: altura, uri: 'link da imagem'}}**
